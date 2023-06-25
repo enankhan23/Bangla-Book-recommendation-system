@@ -1,80 +1,128 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<html>
+<head>
     <title>Book Recommender System</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-  </head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            color: #333;
+        }
 
-  <style>
-    .text-white{
-      color: white;
-    }
-  </style>
+        .navbar {
+            background-color: #4287f5;
+            padding: 10px;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+        }
 
-  <body style="background-color: black;">
-    <nav class="navbar" style="background-color: #00a65a;">
-      <a class="navbar-brand">
-        My book recommendations
-      </a>
-      <ul class="nav navbar-nav">
-        <li><a href="">Home</a></li>
-        <li><a href="">Recommend</a></li>
-        <li><a href="">Contact</a></li>
-        
-      </ul>
+        .navbar-brand {
+            font-size: 20px;
+            font-weight: bold;
+        }
 
+        .navbar-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-links a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4287f5;
+            margin-top: 40px;
+        }
+
+        form {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        input[type="text"] {
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+
+        input[type="submit"] {
+            padding: 5px 10px;
+            background-color: #4287f5;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        h2 {
+            margin-top: 20px;
+            color: #4287f5;
+            text-align: center;
+        }
+
+        h3 {
+            margin-top: 10px;
+            color: #4287f5;
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+            text-align: center;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        p {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .output-section {
+            background-color: #e8f4fd;
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-brand">Book Recommender System</div>
+        <div class="navbar-links">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </div>
     </nav>
 
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <h1 class="text-white" style="font-size:50px">Top 50 books</h1>
+    <h1>Book Recommender System</h1>
+    
+    <form method="POST">
+        <input type="text" name="book_title" placeholder="Enter book title">
+        <input type="submit" value="Search">
+    </form>
+
+    {% if book_title %}
+        <div class="output-section">
+            <h2>Search Results:</h2>
+            {% if recommendations %}
+                <h3>Top 5 Recommendations:</h3>
+                <ul>
+                    {% for book in recommendations %}
+                        <li>{{ book }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No recommendations found for "{{ book_title }}".</p>
+            {% endif %}
         </div>
-
-        <div class="col-md-3" style="margin-top: 50px;">
-          <div class="card">
-            <div class="card-body" style="background:black">
-              <img src="https://www.subtraction.com/wp-content/uploads/2015/03/2015-03-23-random-book-covers-01.jpg" alt="" class="card-img-top">
-              <h2 class="text-white">Harry Potter</h2>
-              <h4 class="text-white">J.K.Rowling</h4>
-              <h4 class="text-white">votes - 300</h4>
-              <h4 class="text-white">ratings - 5.6</h4>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-3" style="margin-top: 50px;">
-          <div class="card">
-            <div class="card-body" style="background:black">
-              <img src="https://www.subtraction.com/wp-content/uploads/2015/03/2015-03-23-random-book-covers-01.jpg" alt="" class="card-img-top">
-              <h2 class="text-white">Harry Potter</h2>
-              <h4 class="text-white">J.K.Rowling</h4>
-              <h4 class="text-white">votes - 300</h4>
-              <h4 class="text-white">ratings - 5.6</h4>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-3" style="margin-top: 50px;">
-          <div class="card">
-            <div class="card-body" style="background:black">
-              <img src="https://www.subtraction.com/wp-content/uploads/2015/03/2015-03-23-random-book-covers-01.jpg" alt="" class="card-img-top">
-              <h2 class="text-white">Harry Potter</h2>
-              <h4 class="text-white">J.K.Rowling</h4>
-              <h4 class="text-white">votes - 300</h4>
-              <h4 class="text-white">ratings - 5.6</h4>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div> 
-
-
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-  </body>
+    {% endif %}
+</body>
 </html>
